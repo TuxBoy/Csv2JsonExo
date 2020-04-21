@@ -1,0 +1,8 @@
+version: '3.1'
+services:
+  php:
+    image: php:7.4-cli
+    user: "${USER_ID}:${GROUP_ID}"
+    working_dir: /usr/src/myapp
+    volumes:
+    - .:/usr/src/myapp

@@ -1,0 +1,18 @@
+#!/usr/bin/env php
+<?php
+require_once __DIR__ . '/src/Autoloader.php';
+
+App\Autoloader::register();
+
+$kernel = new App\Kernel($argv, $argc);
+
+$kernel
+	->addCommand('csv2Json', \App\Csv2JsonCommand::class)
+    ->addArgument('file',true, true)
+	->addArgument('fields', true, false)
+	->addOption('aggregate')
+    ->addOption('pretty', false);
+
+$kernel->addCommand('unit-test', [\App\Test\Test::class, 'run']);
+
+$kernel->run();

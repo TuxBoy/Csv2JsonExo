@@ -7,10 +7,11 @@ App\Autoloader::register();
 $kernel = new App\Kernel($argv, $argc);
 
 $kernel
-	->addCommand('csv2Json', \App\Csv2JsonCommand::class)
+	->addCommand('csv2Json', \App\Command\Csv2JsonCommand::class)
     ->addArgument('file',true, true)
 	->addOption('fields', true, false)
 	->addOption('aggregate')
+		->addOption('desc', true, false)
     ->addOption('pretty', false);
 
 $kernel->addCommand('unit-test', [\App\Test\Test::class, 'run']);

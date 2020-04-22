@@ -19,6 +19,7 @@ class CsvService
 		$contentFile = $this->readCsvFile($csv);
 		$fields      = $contentFile[0]; // Le premier élément du tableau est le nom des champs
 		unset($contentFile[0]);
+		$contentFile = array_values($contentFile);
 		foreach ($contentFile as $index => $result) {
 			foreach ($result as $key => $line) {
 				// Remplacer l'index du tableau par le nom du champ

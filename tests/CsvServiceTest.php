@@ -23,17 +23,17 @@ final class CsvServiceTest extends Test\Unit
 		$actual = $csvService->csvToArray(__DIR__ . '/dummy.csv');
 
 		$expected = [
-			1 => [
+			[
 				'name' => 'foo',
 				'id'   => '5',
 				'date' => '2020-05-03'
 			],
-			2 => [
+			[
 				'name' => 'foo',
 				'id'   => '9',
 				'date' => '2020-05-03'
 			],
-			3 => [
+			[
 				'name' => 'bar',
 				'id'   => '10',
 				'date' => '2020-05-03'

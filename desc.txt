@@ -1,0 +1,7 @@
+### Ceci est un commentaire.
+# les lignes vide ne sont pas utilisées
+
+name = ?string
+id=int
+date=datetime
+price= ?float

@@ -11,7 +11,7 @@ $kernel
     ->addArgument('file',true, true)
 	->addOption('fields', true, false)
 	->addOption('aggregate')
-		->addOption('desc', true, false)
+	->addOption('desc', true, false)
     ->addOption('pretty', false);
 
 $kernel->addCommand('unit-test', [\App\Test\Test::class, 'run']);

@@ -1,4 +1,5 @@
-<?php declare(strict_types=1);
+<?php
+declare(strict_types=1);
 
 namespace App\Service;
 
@@ -41,12 +42,12 @@ class CsvService
 		$aggregateArray = [];
 
 		foreach ($content as $data) {
-			$key = $data[$aggregate];
 			if (!array_key_exists($aggregate, $data)) {
 				throw new CsvException(
 					"Impossible d'aggréger sur $aggregate, le champ ne doit pas être valide."
 				);
 			}
+			$key = $data[$aggregate];
 			foreach ($data as $field => $value) {
 				if ($value === $key) {
 					unset($data[$aggregate]);

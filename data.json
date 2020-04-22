@@ -1,0 +1,44 @@
+[
+    {
+        "name": "foo",
+        "id": 5,
+        "price": 20.2,
+        "date": "2020-05-03"
+    },
+    {
+        "name": "foo",
+        "id": 9,
+        "price": 20.2,
+        "date": "2020-05-03"
+    },
+    {
+        "name": "bar",
+        "id": 1,
+        "price": null,
+        "date": "2020-03-21"
+    },
+    {
+        "name": "boo",
+        "id": 4,
+        "price": 20.2,
+        "date": "2020-03-14"
+    },
+    {
+        "name": "foo",
+        "id": 12,
+        "price": null,
+        "date": "2020-05-07"
+    },
+    {
+        "name": "boo",
+        "id": 5,
+        "price": 20.2,
+        "date": "2020-02-19"
+    },
+    {
+        "name": "far",
+        "id": 10,
+        "price": 20.2,
+        "date": "2020-04-30"
+    }
+]

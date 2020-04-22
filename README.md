@@ -2,8 +2,6 @@
 
 ## La commande csv2Json
 
-- Génération du json de base.
-
 ```bash
 $ ./console csv2json --file=demo.csv
 ```

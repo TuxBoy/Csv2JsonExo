@@ -15,7 +15,7 @@ $ ./console csv2json --file=demo.csv
 | `--pretty`     |      _                       | Permet de mieux formater le json          |
 | `--aggregate`  |  field                       | Aggrège les données sur un champ          |
 | `--fields`     | "field1,field2,field3,..."   | Liste des champs à sortir dans le json    |
-| `--desc`       | "<file>"                     | Fichier de description des types de champ |
+| `--desc`       | "file"                     | Fichier de description des types de champ |
 
 ### Exemple
 

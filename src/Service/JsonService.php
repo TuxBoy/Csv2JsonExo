@@ -33,24 +33,21 @@ class JsonService
 	public function jsonEncode(array $data, bool $pretty, ?string $descriptionFile): string
 	{
 		$result = $this->prepareJsonEncode($data, $pretty);
-		['errors' => $errors, 'data' => $result] = $this->checkValidTypes($result, $pretty, $descriptionFile);
-		if (is_array($errors) && $errors !== []) {
-			// TODO il faudra afficher les erreurs.
-			throw new \Exception("Des erreurs de typages sont présentes dans vos données.\n");
+		if ($descriptionFile !== null) {
+			['errors' => $errors, 'data' => $result] = $this->checkValidTypes($result, $pretty, $descriptionFile);
+			if (is_array($errors) && $errors !== []) {
+				// TODO il faudra afficher les erreurs.
+				throw new \Exception("Des erreurs de typages sont présentes dans vos données.\n");
+			}
 		}
 
 		return $result;
 	}
 
-	private function checkValidTypes(string $result, bool $pretty, ?string $descriptionFile)
+	private function checkValidTypes(string $result, bool $pretty, string $descriptionFile)
 	{
 		$errors = [];
-
-		if ($descriptionFile === null) {
-			return $result;
-		}
-
-		$data = json_decode($result, true);
+		$data   = json_decode($result, true);
 		$descriptionFileContent = file_get_contents($descriptionFile);
 		preg_match_all('#([a-z].*)=(.*)#', $descriptionFileContent, $matches);
 		$mappingTypes = [];

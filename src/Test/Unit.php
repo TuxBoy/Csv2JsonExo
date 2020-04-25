@@ -22,6 +22,7 @@ abstract class Unit
 			$this->passed++;
 		} else {
 			$this->failure[] = ' * ' . $infoTest;
+			throw new \Exception(' * ' . $infoTest);
 		}
 		$this->count++;
 	}

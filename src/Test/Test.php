@@ -53,14 +53,15 @@ class Test
 		$count = 0;
 		foreach ($reflectionClass->getMethods() as $method) {
 			if (substr($method->getName(), 0, 4) === 'test') {
-				//$method->invoke($class);
-				$class->{$method->getName()}();
-				if ($class->passed > 0) {
-					$this->passed[] = $class->passed;
-				}
-				if ($class->failure !== []) {
+				try {
+					$class->{$method->getName()}();
+					if ($class->passed > 0) {
+						$this->passed[] = $class->passed;
+					}
+				} catch (\Exception $exception) {
 					$this->failures[] = $class->failure;
 				}
+
 				$count = $class->count;
 			}
 		}

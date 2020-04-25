@@ -5,6 +5,7 @@ namespace App\Test;
 
 use App\Tools\Output;
 use App\Tools\Str;
+use Exception;
 use ReflectionClass;
 
 class Test
@@ -38,7 +39,7 @@ class Test
 		} else {
 			$message .= "\033[41m Test KO: " . count($this->failures) . "\033[0m\n\n";
 			foreach ($this->failures as $failure) {
-				$message .= join("\n", $failure) . "\n";
+				$message .= $failure . "\n";
 			}
 		}
 
@@ -58,8 +59,8 @@ class Test
 					if ($class->passed > 0) {
 						$this->passed[] = $class->passed;
 					}
-				} catch (\Exception $exception) {
-					$this->failures[] = $class->failure;
+				} catch (Exception $exception) {
+					$this->failures[] = $exception->getMessage();
 				}
 
 				$count = $class->count;

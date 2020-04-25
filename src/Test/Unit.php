@@ -21,7 +21,6 @@ abstract class Unit
 		if ($expected === $actual) {
 			$this->passed++;
 		} else {
-			$this->failure[] = ' * ' . $infoTest;
 			throw new \Exception(' * ' . $infoTest);
 		}
 		$this->count++;

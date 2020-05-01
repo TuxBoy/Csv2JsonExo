@@ -47,6 +47,21 @@ final class Kernel
 		$output->write($message);
 	}
 
+	public function parseArgumentsInfoMessage(Command $command)
+	{
+		$message = "Usage:\n\n";
+		$hasCommand = $command->hasArguments() ? ' <argument>' : '';
+		$message .= "\t" . $command->getName() . " " . $hasCommand . "\n\n";
+		if ($command->hasArguments()) {
+			$message .= "Options:\n\n";
+			foreach (array_merge($command->getArguments(), $command->getOptions()) as $name => $argument) {
+				$message .= "\t" . ' -  --' . $name . ' : ' . ($argument['description'] ?? 'No description') . "\n";
+			}
+		}
+
+		(new Output())->write($message);
+	}
+
 	private function getCalledCommand(): Command
 	{
 		if ($this->numberArgs > 1) {
@@ -88,9 +103,15 @@ final class Kernel
 	public function run()
 	{
 		$command   = $this->getCalledCommand();
-		$callable  = $command->getCallable();
-		$arguments = $this->parseCliArgument($command->getArguments());
-		$options   = $this->parseCliArgument($command->getOptions());
+
+		// Arrivée ici avant d'aller plus loin, je dois vérifier si la commande a des ^arguments obligatoire
+		if (\count($command->getRequiredArguments()) > 0 && \count($this->arguments) <= 1) {
+			return $this->parseArgumentsInfoMessage($command);
+		} else {
+			$callable  = $command->getCallable();
+			$arguments = $this->parseCliArgument($command->getArguments());
+			$options   = $this->parseCliArgument($command->getOptions());
+		}
 
 		if (is_string($callable) && Str::isA($callable, AbstractCommand::class)) {
 			$callable = [$callable, 'execute'];

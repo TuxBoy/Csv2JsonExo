@@ -14,7 +14,7 @@
     {
         "name": "bar",
         "id": 1,
-        "price": null,
+        "price": "",
         "date": "2020-03-21"
     },
     {
@@ -26,7 +26,7 @@
     {
         "name": "foo",
         "id": 12,
-        "price": null,
+        "price": "",
         "date": "2020-05-07"
     },
     {

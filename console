@@ -8,8 +8,8 @@ $kernel = new App\Kernel($argv, $argc);
 
 $kernel
 	->addCommand('csv2Json', \App\Command\Csv2JsonCommand::class)
-    ->addArgument('file',true, true)
-	->addOption('fields', true, false)
+    ->addArgument('file',true, true, 'Fichier csv a transformer en json')
+	->addOption('fields', true, false, 'Liste des champs présent dans le Json')
 	->addOption('aggregate')
 	->addOption('desc', true, false)
     ->addOption('pretty', false);

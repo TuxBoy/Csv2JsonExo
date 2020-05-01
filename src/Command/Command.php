@@ -25,9 +25,10 @@ class Command
 		$this->callable = $callable;
 	}
 
-	public function addArgument(string $name, bool $value = true, bool $required = false): self
-	{
-		$this->arguments[$name] = ['value' => $value, 'required' => $required];
+	public function addArgument(
+		string $name, bool $value = true, bool $required = false, string $description = null
+	): self {
+		$this->arguments[$name] = ['value' => $value, 'required' => $required, 'description' => $description];
 
 		return $this;
 	}
@@ -45,16 +46,31 @@ class Command
 		return $this->arguments;
 	}
 
-	public function addOption(string $name, bool $value = true, bool $required = false): self
+	public function getRequiredArguments(): array
 	{
-		$this->options[$name] = ['value' => $value, 'required' => $required];
+		return array_filter($this->getArguments(), fn ($argument) => $argument['required'] === true);
+	}
+
+	public function addOption(string $name, bool $value = true, bool $required = false, string $description = null): self
+	{
+		$this->options[$name] = ['value' => $value, 'required' => $required, 'description' => $description];
 
 		return $this;
+	}
+
+	public function hasArguments(): bool
+	{
+		return \count($this->getArguments()) > 0;
 	}
 
 	public function getOptions(): array
 	{
 		return $this->options;
+	}
+
+	public function getName(): string
+	{
+		return $this->name;
 	}
 
 }
